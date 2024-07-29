@@ -1,6 +1,10 @@
 // TODO: Include packages needed for this application
 import fs from 'fs';
 import inquirer from 'inquirer';
+import generateMarkdown from './utils/generateMarkdown.js';
+import renderLicenseBadge from './utils/generateMarkdown.js';
+import renderLicenseLink from './utils/generateMarkdown.js';
+import renderLicenseSection from './utils/generateMarkdown.js';
 
 // TODO: Create an array of questions for user input
 const questions = [
@@ -34,12 +38,23 @@ const questions = [
         name: "tests",
         message: "Enter test instructions: ",
     },
-    //TODO: 
-        /*
-        * License & badge
-        * Github username
-        * email address
-        */
+    {
+        type: "list",
+        name: "license",
+        message: "Select license: ",
+        // Only 3 licenses for simplicity's sake - More could be added later on
+        choices: ['None', 'Apache License 2.0', 'GNU General Public License 3.0', 'MIT License']
+    },
+    {
+        type: "input",
+        name: "githubName",
+        message: "Enter GitHub name: ",
+    },
+    {
+        type: "input",
+        name: "email",
+        message: "Enter email address: ",
+    },
 ]
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {
